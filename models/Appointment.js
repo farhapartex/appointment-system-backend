@@ -6,6 +6,11 @@ const appointmentPlaceSchema = new Schema({
     name: {
         type: String,
         required: true,
+    },
+    address: {
+        type: String,
+        required: true,
+        default: ""
     }
 });
 

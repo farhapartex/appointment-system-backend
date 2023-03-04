@@ -31,8 +31,9 @@ userSchema.methods.generateAuthToken = () => {
         id: this._id,
         firstName: this.firstName,
         lastName: this.lastName,
-        isAdmin: this.isAdmin
-    }, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRE_IN });
+        isAdmin: this.isAdmin,
+        exp: Math.floor(Date.now() / 1000) + (60 * 60),
+    }, process.env.JWT_SECRET);
 
     return token;
 }
