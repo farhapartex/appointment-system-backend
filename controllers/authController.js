@@ -30,6 +30,35 @@ const authRegisterController = async (req, res) => {
     }
 }
 
+
+const authLoginController = async (req, res) => {
+    const body = req.body;
+
+    if (!body.username || !body.password) {
+        return res.status(400).json({ error: 'Please enter all fields' });
+    }
+
+    try {
+        const user = await User.findOne({ username: body.username }).exec();
+        if (!user) {
+            return res.status(400).json({ error: 'Invalid credentials' });
+        }
+
+        const isMatch = await bcrypt.compare(body.password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ error: 'Invalid credentials' });
+        }
+
+        const authToken = user.generateAuthToken();
+
+        res.status(200).json({ authToken });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "System error" });
+    }
+}
+
 module.exports = {
-    authRegisterController
+    authRegisterController,
+    authLoginController,
 }

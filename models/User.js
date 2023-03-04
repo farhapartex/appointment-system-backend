@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const jwt = require("jsonwebtoken");
 
 const Schema = mongoose.Schema;
 
@@ -24,6 +25,17 @@ const userSchema = new Schema({
         default: false
     }
 });
+
+userSchema.methods.generateAuthToken = () => {
+    const token = jwt.sign({
+        id: this._id,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        isAdmin: this.isAdmin
+    }, process.env.JWT_SECRET, { expiresIn: process.env.EXPIRE_IN });
+
+    return token;
+}
 
 
 module.exports = {
