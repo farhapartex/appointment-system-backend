@@ -53,7 +53,6 @@ const authLoginController = async (req, res) => {
 
         res.status(200).json({ authToken });
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ error: "System error" });
     }
 }
