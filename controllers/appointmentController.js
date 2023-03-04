@@ -19,6 +19,34 @@ const createAppointmentPlace = async (req, res) => {
     }
 }
 
+const getAppointmentPlaces = async (req, res) => {
+    try {
+        const appointmentPlaces = await AppointmentPlace.find({});
+        res.status(200).json(appointmentPlaces);
+    } catch (error) {
+        return res.status(500).json({ error: "System error" });
+    }
+}
+
+
+const createWeeklyAppointmentSlot = async (req, res) => {
+    const body = req.body;
+    const tomorrow = new Date();
+
+    try {
+        for (let dayCount = 1; dayCount <= 7; dayCount++) {
+            await WeeklyAppointment.create({ ...body, date: tomorrow });
+            tomorrow.setDate(tomorrow.getDate() + 1);
+        }
+
+        res.status(201).json({ message: "Weekly appointment created successfully" });
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ error: "System error" });
+    }
+}
+
 const createAppointment = async (req, res) => {
     const body = req.body;
     try {
@@ -36,6 +64,8 @@ const createAppointment = async (req, res) => {
 }
 
 module.exports = {
+    getAppointmentPlaces,
     createAppointmentPlace,
+    createWeeklyAppointmentSlot,
     createAppointment
 }

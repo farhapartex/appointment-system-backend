@@ -1,9 +1,12 @@
 const express = require('express');
-const { createAppointmentPlace } = require('../controllers/appointmentController');
+const { getAppointmentPlaces, createAppointmentPlace, createWeeklyAppointmentSlot } = require('../controllers/appointmentController');
 const { authTokenMiddleware } = require('../middlewares/auth');
 
 const route = express.Router();
 
-route.post("/createAppointmentPlace", createAppointmentPlace);
+route.get("/appointmentPlaces", getAppointmentPlaces);
+route.post("/appointmentPlaces", createAppointmentPlace);
+
+route.post("/weeklyAppointmentSlots", createWeeklyAppointmentSlot);
 
 module.exports = route;
