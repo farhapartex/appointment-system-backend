@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "Md Nazmul Hasan",
   "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
