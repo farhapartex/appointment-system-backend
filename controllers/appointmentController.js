@@ -49,16 +49,37 @@ const createWeeklyAppointmentSlot = async (req, res) => {
 
 const createAppointment = async (req, res) => {
     const body = req.body;
+    const today = new Date();
+    const lastDay = new Date(today.getTime() - 24 * 60 * 60 * 1000);
     try {
         if (req.user.isAdmin === false) {
             return res.status(403).json({ error: "You are not authorized to create appointment place" });
         }
 
+        const weeklyAppointment = await WeeklyAppointment.find({
+            date: {
+                $gte: lastDay,
+                $lte: today
+            }, status: true
+        });
+
+        if (!weeklyAppointment) {
+            return res.status(404).json({ error: "No appointment available for today" });
+        }
+
         const lastAppointment = await Appointment.find({}).sort({ serialNumber: -1 }).limit(1);
 
-        const appointment = await Appointment.create({ ...body, serialNumber: lastAppointment[0].serialNumber + 1 });
+        let serialNumber = null;
+        if (lastAppointment.length === 0) {
+            serialNumber = 1;
+        } else {
+            serialNumber = lastAppointment[0].serialNumber + 1;
+        }
+
+        const appointment = await Appointment.create({ ...body, serialNumber: serialNumber, appointmentDate: today });
         res.status(201).json(appointment);
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ error: "System error" });
     }
 }
