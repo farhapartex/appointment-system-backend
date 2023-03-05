@@ -12,14 +12,13 @@ const authTokenMiddleware = (req, res, next) => {
 
         jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
             if (err) {
-                console.log(err);
                 return res.status(403).send({ message: 'Invalid token.' });
             };
             req.user = user;
             next();
         });
+
     } catch (err) {
-        console.log(err);
         res.status(403).send({ message: 'Invalid token.' })
     }
 }

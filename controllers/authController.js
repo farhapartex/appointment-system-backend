@@ -49,10 +49,16 @@ const authLoginController = async (req, res) => {
             return res.status(400).json({ error: 'Invalid credentials' });
         }
 
-        const authToken = user.generateAuthToken();
+        const authToken = jwt.sign({
+            id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            isAdmin: user.isAdmin
+        }, process.env.JWT_SECRET, { expiresIn: 3600 });
 
         res.status(200).json({ authToken });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ error: "System error" });
     }
 }

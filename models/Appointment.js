@@ -64,6 +64,11 @@ const appointmentSchema = new Schema({
     appointmentWithUser: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+    },
+    isApproved: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 

@@ -5,13 +5,15 @@ const { AppointmentPlace, WeeklyAppointment, Appointment } = require('../models/
 
 const createAppointmentPlace = async (req, res) => {
     const body = req.body;
+    const user = req.user;
+    console.log(user);
 
     try {
         if (req.user.isAdmin === false) {
             return res.status(403).json({ error: "You are not authorized to create appointment place" });
         }
 
-        const appointmentPlace = await AppointmentPlace.create(body);
+        const appointmentPlace = await AppointmentPlace.create({ ...body, user: user.id });
         res.status(201).json(appointmentPlace);
 
     } catch (error) {
@@ -21,7 +23,8 @@ const createAppointmentPlace = async (req, res) => {
 
 const getAppointmentPlaces = async (req, res) => {
     try {
-        const appointmentPlaces = await AppointmentPlace.find({});
+        const user = req.user;
+        const appointmentPlaces = await AppointmentPlace.find({ user: user.id });
         res.status(200).json(appointmentPlaces);
     } catch (error) {
         return res.status(500).json({ error: "System error" });
@@ -31,11 +34,12 @@ const getAppointmentPlaces = async (req, res) => {
 
 const createWeeklyAppointmentSlot = async (req, res) => {
     const body = req.body;
+    const user = req.user;
     const tomorrow = new Date();
 
     try {
         for (let dayCount = 1; dayCount <= 7; dayCount++) {
-            await WeeklyAppointment.create({ ...body, date: tomorrow });
+            await WeeklyAppointment.create({ ...body, date: tomorrow, user: user.id });
             tomorrow.setDate(tomorrow.getDate() + 1);
         }
 
@@ -43,6 +47,17 @@ const createWeeklyAppointmentSlot = async (req, res) => {
 
     } catch (error) {
         console.log(error);
+        return res.status(500).json({ error: "System error" });
+    }
+}
+
+
+const getWeeklyAppointmentSlots = async (req, res) => {
+    try {
+        const user = req.user;
+        const weeklyAppointments = await WeeklyAppointment.find({ user: user.id });
+        res.status(200).json(weeklyAppointments);
+    } catch (error) {
         return res.status(500).json({ error: "System error" });
     }
 }
@@ -88,5 +103,6 @@ module.exports = {
     getAppointmentPlaces,
     createAppointmentPlace,
     createWeeklyAppointmentSlot,
+    getWeeklyAppointmentSlots,
     createAppointment
 }
