@@ -124,11 +124,32 @@ const approveAppointmentByAdmin = async (req, res) => {
     }
 }
 
+const getCurrentDayAppointments = async (req, res) => {
+    const user = req.user;
+
+    try {
+        const today = new Date();
+        const lastDay = new Date(today.getTime() - 24 * 60 * 60 * 1000);
+
+        const appointments = await Appointment.find({
+            appointmentDate: {
+                $gte: lastDay,
+                $lte: today
+            }, appointmentWithUser: user.id
+        });
+
+        res.status(200).json(appointments);
+    } catch (error) {
+        return res.status(500).json({ error: "System error" });
+    }
+}
+
 module.exports = {
     getAppointmentPlaces,
     createAppointmentPlace,
     createWeeklyAppointmentSlot,
     getWeeklyAppointmentSlots,
     createAppointment,
-    approveAppointmentByAdmin
+    approveAppointmentByAdmin,
+    getCurrentDayAppointments
 }

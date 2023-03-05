@@ -1,6 +1,13 @@
 const express = require('express');
-const { getAppointmentPlaces, createAppointmentPlace, createWeeklyAppointmentSlot, createAppointment, getWeeklyAppointmentSlots, approveAppointmentByAdmin } = require('../controllers/appointmentController');
-const { authTokenMiddleware } = require('../middlewares/auth');
+const {
+    getAppointmentPlaces,
+    createAppointmentPlace,
+    createWeeklyAppointmentSlot,
+    createAppointment,
+    getWeeklyAppointmentSlots,
+    approveAppointmentByAdmin,
+    getCurrentDayAppointments
+} = require('../controllers/appointmentController');
 
 const route = express.Router();
 
@@ -11,5 +18,6 @@ route.post("/weeklyAppointmentSlots", createWeeklyAppointmentSlot);
 route.get("/weeklyAppointmentSlots", getWeeklyAppointmentSlots);
 route.post("/appointments", createAppointment);
 route.patch("/approveAppointment", approveAppointmentByAdmin);
+route.get("/getCurrentDayAppointments", getCurrentDayAppointments);
 
 module.exports = route;
