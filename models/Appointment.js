@@ -11,6 +11,10 @@ const appointmentPlaceSchema = new Schema({
         type: String,
         required: true,
         default: ""
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     }
 });
 
@@ -28,6 +32,10 @@ const weeklyAppointmentSchema = new Schema({
         type: Boolean,
         required: true,
         default: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     }
 });
 
@@ -52,6 +60,10 @@ const appointmentSchema = new Schema({
     serialNumber: {
         type: Number,
         required: true
+    },
+    appointmentWithUser: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     }
 });
 
