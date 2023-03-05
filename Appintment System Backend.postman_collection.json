@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "6ca6f72e-d5e2-482b-a6ab-096a7a12ab1a",
+		"name": "Appintment System Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4375036"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/api/v1/auth/login/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Md Nazmul\",\n    \"lastName\": \"Hasan\",\n    \"username\": \"hasan08sust@gmail.com\",\n    \"isAdmin\": true,\n    \"password\": \"Ninja6708\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/auth/register/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login api",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"farhan.islam@gmail.com\",\n    \"password\": \"Ninja6708\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/auth/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create appointment place",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4NDc5ZWM4YzhmNWRiOGIzNjdlNiIsImZpcnN0TmFtZSI6Ik1kIEZhcmhhbiIsImxhc3ROYW1lIjoiSXNsYW0iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzgwMjA3MDksImV4cCI6MTY3ODAyNDMwOX0.vVYjozqT_4rBUrC-wXx6d95BVz_TmSnqt862Vel_7aY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Place 7\",\n    \"address\": \"35/1, Dhanshiri, Sunamganj\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointment/appointmentPlaces/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointment",
+						"appointmentPlaces",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get appointment places",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4NDc5ZWM4YzhmNWRiOGIzNjdlNiIsImZpcnN0TmFtZSI6Ik1kIEZhcmhhbiIsImxhc3ROYW1lIjoiSXNsYW0iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzgwMjA3MDksImV4cCI6MTY3ODAyNDMwOX0.vVYjozqT_4rBUrC-wXx6d95BVz_TmSnqt862Vel_7aY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointment/appointmentPlaces/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointment",
+						"appointmentPlaces",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create weekly appointment slot",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4NDc5ZWM4YzhmNWRiOGIzNjdlNiIsImZpcnN0TmFtZSI6Ik1kIEZhcmhhbiIsImxhc3ROYW1lIjoiSXNsYW0iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzgwMjA3MDksImV4cCI6MTY3ODAyNDMwOX0.vVYjozqT_4rBUrC-wXx6d95BVz_TmSnqt862Vel_7aY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"place\": \"6404907635692f1dbbf956e2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointment/weeklyAppointmentSlots/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointment",
+						"weeklyAppointmentSlots",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create appointment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4NDc5ZWM4YzhmNWRiOGIzNjdlNiIsImZpcnN0TmFtZSI6Ik1kIEZhcmhhbiIsImxhc3ROYW1lIjoiSXNsYW0iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzgwMjA3MDksImV4cCI6MTY3ODAyNDMwOX0.vVYjozqT_4rBUrC-wXx6d95BVz_TmSnqt862Vel_7aY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fullName\": \"Md Nazmul Hasan\",\n    \"age\": \"45\",\n    \"mobile\": \"01636990528\",\n    \"appointmentWithUser\": \"64048479ec8c8f5db8b367e6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointment/appointments/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointment",
+						"appointments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registration api",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Md Farhan\",\n    \"lastName\": \"Islam\",\n    \"designation\": \"Doctor\",\n    \"username\": \"farhan.islam@gmail.com\",\n    \"password\": \"Ninja6708\",\n    \"isAdmin\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/auth/register/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get weekly appointment slots",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4NDc5ZWM4YzhmNWRiOGIzNjdlNiIsImZpcnN0TmFtZSI6Ik1kIEZhcmhhbiIsImxhc3ROYW1lIjoiSXNsYW0iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzgwMjA3MDksImV4cCI6MTY3ODAyNDMwOX0.vVYjozqT_4rBUrC-wXx6d95BVz_TmSnqt862Vel_7aY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointment/weeklyAppointmentSlots/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointment",
+						"weeklyAppointmentSlots",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "approve admin appointment",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4NDc5ZWM4YzhmNWRiOGIzNjdlNiIsImZpcnN0TmFtZSI6Ik1kIEZhcmhhbiIsImxhc3ROYW1lIjoiSXNsYW0iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzgwMjA3MDksImV4cCI6MTY3ODAyNDMwOX0.vVYjozqT_4rBUrC-wXx6d95BVz_TmSnqt862Vel_7aY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"appointmentId\": \"640492a0884f188bfe578e28\",\n    \"isApproved\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointment/approveAppointment/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointment",
+						"approveAppointment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Current Day Appointment",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDQ4NDc5ZWM4YzhmNWRiOGIzNjdlNiIsImZpcnN0TmFtZSI6Ik1kIEZhcmhhbiIsImxhc3ROYW1lIjoiSXNsYW0iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2NzgwMjA3MDksImV4cCI6MTY3ODAyNDMwOX0.vVYjozqT_4rBUrC-wXx6d95BVz_TmSnqt862Vel_7aY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointment/getCurrentDayAppointments/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointment",
+						"getCurrentDayAppointments",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
