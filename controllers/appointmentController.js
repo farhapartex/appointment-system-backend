@@ -99,10 +99,36 @@ const createAppointment = async (req, res) => {
     }
 }
 
+const approveAppointmentByAdmin = async (req, res) => {
+    const body = req.body;
+    const user = req.user;
+
+    try {
+        if (user.isAdmin === false) {
+            return res.status(403).json({ error: "You are not authorized to approve appointment" });
+        }
+
+        if (!body.appointmentId || body.isApproved === undefined) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
+
+        const appointment = await Appointment.findOneAndUpdate({ _id: body.appointmentId }, { isApproved: body.isApproved }, { new: true });
+
+        if (!appointment) {
+            return res.status(404).json({ error: "Appointment not found" });
+        }
+
+        res.status(200).json(appointment);
+    } catch (error) {
+        return res.status(500).json({ error: "System error" });
+    }
+}
+
 module.exports = {
     getAppointmentPlaces,
     createAppointmentPlace,
     createWeeklyAppointmentSlot,
     getWeeklyAppointmentSlots,
-    createAppointment
+    createAppointment,
+    approveAppointmentByAdmin
 }
